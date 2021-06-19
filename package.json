@@ -11,7 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/shailus1029/Node-practices..git"
   },
-  "keywords": [],
+  "keywords": [
+    "node",
+    "express",
+    "mongodb",
+    "redis"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -21,6 +26,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "mongoose": "^5.12.14",
     "nodemon": "^2.0.7"
   }
 }
