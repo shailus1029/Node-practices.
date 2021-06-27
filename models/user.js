@@ -48,6 +48,20 @@ const createUser = (body) => {
     });
 };
 
+const usersList = () => {
+    const User = mongoose.model("Users", userSchema);
+    return new Promise((resolve, reject) => {
+        User.find({}, (error, data) => {
+            if (error) {
+                return reject(error);
+            } else {
+                return resolve(data);
+            }
+        });
+    });
+};
+
 module.exports = {
-    createUser
+    createUser,
+    usersList
 };

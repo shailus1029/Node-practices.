@@ -42,3 +42,25 @@ exports.createUser = (req, res) => {
         res.status(400).json({ success: false, errors: err });
     });
 };
+
+exports.usersList = (req, res) => {
+    return new Promise((resolve, reject) => {
+        return resolve(true);
+    }).then(resolved => {
+        return userService.usersList();
+    }).then(data => {
+        const filterdData = data.map(user => {
+            let obj = {};
+            obj.id = user._id;
+            obj.userId = user.userId;
+            obj.firstname = user.firstname;
+            obj.lastname = user.lastname;
+            obj.email = user.email;
+            obj.username = user.username;
+            return obj;
+        });
+        res.status(200).json({ success: true, userList: filterdData });
+    }).catch(error => {
+        res.status(400).json({ success: false, errors: error });
+    });
+};
