@@ -1,12 +1,7 @@
 const express = require("express");
 const route = express.Router();
+const userController = require("../controllers/user.controller");
 
-route.get('/test', function (req, res) {
-    console.log("testing route");
-    res.send({
-        success: true,
-        message: "api is working successfully"
-    });
-});
+route.post('/create', userController.createUser);
 
 module.exports = route;
