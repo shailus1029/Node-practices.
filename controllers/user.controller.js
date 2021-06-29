@@ -1,6 +1,7 @@
 const userService = require('../services/user.service');
 const uuid = require("uuid");
 const { handleError } = require("../utils/errorHandler");
+const { logData } = require("../utils/logger");
 
 exports.createUser = (req, res) => {
     let errors = [];
@@ -37,8 +38,10 @@ exports.createUser = (req, res) => {
         body.userId = uuid.v4();
         return userService.createUser(body);
     }).then(data => {
+        logData(req.url, {}, data, new Date(), "guest-user", {});
         res.status(200).json({ success: true, data: data });
     }).catch(err => {
+        logData(req.url, {}, { error: true, err }, new Date(), "guest-user", {});
         res.status(400).json({ success: false, errors: err });
     });
 };
@@ -49,6 +52,7 @@ exports.usersList = (req, res) => {
     }).then(resolved => {
         return userService.usersList();
     }).then(data => {
+        logData(req.url, {}, data, new Date(), "guest-user", {});
         const filterdData = data.map(user => {
             let obj = {};
             obj.id = user._id;
@@ -61,6 +65,7 @@ exports.usersList = (req, res) => {
         });
         res.status(200).json({ success: true, userList: filterdData });
     }).catch(error => {
+        logData(req.url, {}, { error: true, err }, new Date(), "guest-user", {});
         res.status(400).json({ success: false, errors: error });
     });
 };

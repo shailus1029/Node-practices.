@@ -38,9 +38,9 @@ function apiLogger(userId, type) {
     }
 }
 
-function logData (request, data, execTime, userId, headers = {}) {
+function logData (url, request, data, execTime, userId, headers = {}) {
     let logDataLogger = apiLogger(userId, 'apiLogs');
-    const logMessage =  `REQUEST: ${JSON.stringify(request)} HEADERS: ${JSON.stringify(headers)} RESPONSE: ${JSON.stringify(data)} EXEC-TIME: ${execTime} ms ${os.EOL}`;
+    const logMessage =  `URL: ${url} REQUEST: ${JSON.stringify(request)} HEADERS: ${JSON.stringify(headers)} RESPONSE: ${JSON.stringify(data)} EXEC-TIME: ${execTime} ms ${os.EOL}`;
     if (logDataLogger) {
         logDataLogger.log('info', logMessage);
     }
