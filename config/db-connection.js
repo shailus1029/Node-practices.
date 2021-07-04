@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURL = 'mongodb://localhost:27017/user';
+const dbURL = process.env.DB_URL;
 
 module.exports = function () {
   mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true });
