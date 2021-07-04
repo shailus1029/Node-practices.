@@ -12,3 +12,9 @@ exports.usersList = async function () {
         return response;
     });
 };
+
+exports.getUser = async function (id) {
+    return userModel.getUser(id).then(response => {
+        return response;
+    });
+};

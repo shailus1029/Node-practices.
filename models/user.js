@@ -61,7 +61,21 @@ const usersList = () => {
     });
 };
 
+const getUser = (id) => {
+    const User = mongoose.model("Users", userSchema);
+    return new Promise((resolve, reject) => {
+        User.findOne({ userId: id }, (error, data) => {
+            if (error) {
+                reject(error);
+            } else {
+                return resolve(data);
+            }
+        });
+    });
+};
+
 module.exports = {
     createUser,
-    usersList
+    usersList,
+    getUser
 };

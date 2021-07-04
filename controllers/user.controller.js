@@ -69,3 +69,15 @@ exports.usersList = (req, res) => {
         res.status(400).json({ success: false, errors: error });
     });
 };
+
+exports.getUser = (req, res) => {
+    return new Promise((resolve, reject) => {
+        return resolve(true)
+    }).then(resolved => {
+        return userService.getUser(req.params.userId);
+    }).then(data => {
+        res.status(200).json({ success: true, userDetails: data });
+    }).catch(error => {
+        res.status(400).json({ success: false, errors: error });
+    })
+}
